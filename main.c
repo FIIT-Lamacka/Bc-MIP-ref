@@ -6,73 +6,8 @@
 #define LIMIT_NACITANIA 1000
 #define DLZKA_ABECEDY 26
 
-void nacitanie(char *p_povodny, int *p_nacitany);
-void vypis(char *p_povodny, int *p_nacitany);
-void uprava(char *p_povodny, char *p_upraveny, int povodny_l, int *p_bola_upravena, int *p_nacitana);
-void vypis_upravena(char povodny[], int upraveny);
-void dana_dlzka(char povodny[], int dlzka, int *p_nacitana);
-void histogram(char upraveny[], int upraveny_l, int bola_upravena);
-void cezar(char upraveny[], int upraveny_l, int bola_upravena);
 
-int main() {
-    int end=0,right,i,povodny_l,upraveny_l,bola_upravena=0, nacitany=0;
-    char prikaz, povodny[LIMIT_NACITANIA], upraveny[LIMIT_NACITANIA];
-
-    //Nulovanie polí
-    for(i=0;i<LIMIT_NACITANIA;i++){
-        upraveny[i]='\0';
-        povodny[i]='\0';
-    }
-
-    while(1){ //Nekoneèna sluèka èo skonèí pri k
-
-        //Nacitanie prikazu a prevod na male pismeno
-        prikaz = getchar();
-        prikaz=tolower(prikaz);
-
-        //opakovane zistenie dlzok pola, pre prípad upravy suboru sifra.txt
-        povodny_l =strlen(povodny);
-        upraveny_l =strlen(upraveny);
-
-
-
-        switch(prikaz) {
-            case 'n' :
-                nacitanie(povodny,&nacitany);
-                break;
-            case 'v'  :
-                vypis(povodny,&nacitany);
-                break;
-            case 'u'  :
-                uprava(povodny,upraveny,povodny_l,&bola_upravena,&nacitany);
-                break;
-            case 's'  :
-                vypis_upravena(upraveny,bola_upravena);
-                break;
-            case 'd'  :
-                dana_dlzka(povodny,povodny_l,&nacitany);
-                break;
-            case 'h'  :
-                histogram(upraveny, upraveny_l, bola_upravena);
-                break;
-            case 'c'  :
-                cezar(upraveny, upraveny_l, bola_upravena);
-                break;
-            case 'k'  :
-                return 0;
-                break;
-        }
-
-
-        //kontrola spravneho pismena a ošetrenie aby gerchar nebral do buffera aj znak konca riadku
-        if(prikaz != '\n' && prikaz != 'n' && prikaz != 'v' && prikaz != 'u' && prikaz != 's' && prikaz != 'd' && prikaz != 'h' && prikaz != 'c'){
-            printf("Zadali ste zle pismeno\n");
-        }
-    }
-    return 0;
-}
-
-void nacitanie(char *p_povodny, int *p_nacitany){
+void nacitanie(char *p_povodne_pole, int *p_bol_nacitany){
     FILE *fr;
     int i=0;
     char c;
@@ -83,10 +18,10 @@ void nacitanie(char *p_povodny, int *p_nacitany){
 	}
     //nacitanie hodnôt do súboru pomocou pointerovej aritmetiky
 	while (c = getc(fr), feof(fr) == 0 && i<LIMIT_NACITANIA){
-      *p_povodny=c;
-        p_povodny++;
+      *p_povodne_pole=c;
+        p_povodne_pole++;
     }
-    *p_nacitany=1;
+    *p_bol_nacitany=1;
     //zo suroborom viac pracovat nebudeme cize rovno ho môzeme zatvori
     if (fclose(fr) == EOF)
       printf("Subor vstup.txt sa nepodarilo zatvorit.\n");
@@ -249,3 +184,63 @@ void cezar(char upraveny[], int upraveny_l, int bola_upravena){
 
 
 }
+
+int main() {
+    int end=0,right,i,povodny_l,upraveny_l,bola_upravena=0, nacitany=0;
+    char prikaz, povodny[LIMIT_NACITANIA], upraveny[LIMIT_NACITANIA];
+
+    //Nulovanie polí
+    for(i=0;i<LIMIT_NACITANIA;i++){
+        upraveny[i]='\0';
+        povodny[i]='\0';
+    }
+
+    while(1){ //Nekoneèna sluèka èo skonèí pri k
+
+        //Nacitanie prikazu a prevod na male pismeno
+        prikaz = getchar();
+        prikaz=tolower(prikaz);
+
+        //opakovane zistenie dlzok pola, pre prípad upravy suboru sifra.txt
+        povodny_l =strlen(povodny);
+        upraveny_l =strlen(upraveny);
+
+
+
+        switch(prikaz) {
+            case 'n' :
+                nacitanie(povodny,&nacitany);
+                break;
+            case 'v'  :
+                vypis(povodny,&nacitany);
+                break;
+            case 'u'  :
+                uprava(povodny,upraveny,povodny_l,&bola_upravena,&nacitany);
+                break;
+            case 's'  :
+                vypis_upravena(upraveny,bola_upravena);
+                break;
+            case 'd'  :
+                dana_dlzka(povodny,povodny_l,&nacitany);
+                break;
+            case 'h'  :
+                histogram(upraveny, upraveny_l, bola_upravena);
+                break;
+            case 'c'  :
+                cezar(upraveny, upraveny_l, bola_upravena);
+                break;
+            case 'k'  :
+                return 0;
+                break;
+        }
+
+
+        //kontrola spravneho pismena a ošetrenie aby gerchar nebral do buffera aj znak konca riadku
+        if(prikaz != '\n' && prikaz != 'n' && prikaz != 'v' && prikaz != 'u' && prikaz != 's' && prikaz != 'd' && prikaz != 'h' && prikaz != 'c'){
+            printf("Zadali ste zle pismeno\n");
+        }
+    }
+    return 0;
+}
+
+
