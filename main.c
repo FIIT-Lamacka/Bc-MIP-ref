@@ -30,12 +30,12 @@ void nacitanie(char *p_povodne_pole, int *p_bol_nacitany){
 
 }
 
-void vypis(char *p_povodny, int *p_nacitany){
-    if(*p_nacitany==0){
+void vypis(char *p_povodne_pole, int *p_bol_nacitany){
+    if(*p_bol_nacitany==0){
         printf("Sprava nie je nacitana\n");
         return;
     }
-    printf("%s\n",p_povodny);
+    printf("%s\n",p_povodne_pole);
 }
 
 void uprava(char p_povodny[], char *p_upraveny, int povodny_lenght, int *p_bola_upravena, int *p_nacitana){
