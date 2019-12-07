@@ -130,7 +130,7 @@ void vypis_upravena(char povodny[], int upraveny){
     }
 }
 void dana_dlzka(char povodny[],int dlzka, int *p_nacitana){
-    int num,i=0,j=0,count=0,k; min=0;max=100;
+    int num,i=0,j=0,count=0,k, min=0,max=100;
     char vypis[dlzka]; //nebudeme potrebovat dlzku pola vacsiu ako pôvodne
 
     if(*p_nacitana==0){
