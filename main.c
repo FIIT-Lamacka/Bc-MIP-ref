@@ -8,16 +8,15 @@
 
 void nacitanie_povodneho_pola(char *p_povodne_pole, int *p_bol_nacitany){
     FILE *fr;
-    int i=0;
-    char c;
+    char znak;
 
     if ((fr = fopen("sifra.txt", "r")) == NULL) {
 		printf("Spravu sa nepodarilo nacitat\n");
 		return;
 	}
     //nacitanie hodnôt do súboru pomocou pointerovej aritmetiky
-	while (c = getc(fr), feof(fr) == 0 && i<LIMIT_NACITANIA){
-      *p_povodne_pole=c;
+	while (znak = getc(fr), feof(fr) == 0){
+      *p_povodne_pole=znak;
         p_povodne_pole++;
     }
     *p_bol_nacitany=1;
