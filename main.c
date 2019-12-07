@@ -3,6 +3,7 @@
 //#include <stdlib.h>
 #include <string.h> //funkcia strlen()
 #include <math.h> //funkcia floor()
+#define LIMIT_NACITANIA 1000
 
 void nacitanie(char *p_povodny, int *p_nacitany);
 void vypis(char *p_povodny, int *p_nacitany);
@@ -14,10 +15,10 @@ void cezar(char upraveny[], int upraveny_l, int bola_upravena);
 
 int main() {
     int end=0,right,i,povodny_l,upraveny_l,bola_upravena=0, nacitany=0;
-    char prikaz, povodny[1000], upraveny[1000];
+    char prikaz, povodny[LIMIT_NACITANIA], upraveny[LIMIT_NACITANIA];
 
     //Nulovanie polí
-    for(i=0;i<1000;i++){
+    for(i=0;i<LIMIT;i++){
         upraveny[i]='\0';
         povodny[i]='\0';
     }
@@ -80,7 +81,7 @@ void nacitanie(char *p_povodny, int *p_nacitany){
 		return 0;
 	}
     //nacitanie hodnôt do súboru pomocou pointerovej aritmetiky
-	while (c = getc(fr), feof(fr) == 0 && i<1000){
+	while (c = getc(fr), feof(fr) == 0 && i<LIMIT_NACITANIA){
       *p_povodny=c;
         p_povodny++;
     }
