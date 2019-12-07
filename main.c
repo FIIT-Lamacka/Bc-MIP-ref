@@ -4,6 +4,7 @@
 #include <string.h> //funkcia strlen()
 #include <math.h> //funkcia floor()
 #define LIMIT_NACITANIA 1000
+#define DLZKA_ABECEDY 26
 
 void nacitanie(char *p_povodny, int *p_nacitany);
 void vypis(char *p_povodny, int *p_nacitany);
@@ -129,7 +130,7 @@ void vypis_upravena(char povodny[], int upraveny){
     }
 }
 void dana_dlzka(char povodny[],int dlzka, int *p_nacitana){
-    int num,i=0,j=0,count=0,k;
+    int num,i=0,j=0,count=0,k; min=0;max=100;
     char vypis[dlzka]; //nebudeme potrebovat dlzku pola vacsiu ako pôvodne
 
     if(*p_nacitana==0){
@@ -139,7 +140,7 @@ void dana_dlzka(char povodny[],int dlzka, int *p_nacitana){
 
     scanf("%d",&num);
 
-    if(num<1||num>100){
+    if(num<min||num>max){
         printf("Cislo musi byt v rozsahu <1-100>\n");
         return;
     }
@@ -169,15 +170,15 @@ void dana_dlzka(char povodny[],int dlzka, int *p_nacitana){
 }
 
 void histogram(char upraveny[], int upraveny_l,int bola_upravena){
-    int pocet[26], total,i,j, highest_zaok=0; //pocet je 26 lebo v abecede je 26 prvkov
-    float priemer[26],highest=0;
+    int pocet[DLZKA_ABECEDY], total,i,j, highest_zaok=0;
+    float priemer[DLZKA_ABECEDY],highest=0;
 
     if(bola_upravena==0){
         printf("Nie je k dispozicii upravena sprava\n");
         return;
     }
     //NULOVANIE POLA
-    for(i=0;i<26;i++){
+    for(i=0;i<DLZKA_ABECEDY;i++){
         pocet[i]=0;
         priemer[i]=0;
     }
@@ -186,12 +187,12 @@ void histogram(char upraveny[], int upraveny_l,int bola_upravena){
         pocet[(upraveny[i]-'A')]++;
     }
     //VYPOCET PERCENT
-    for(i=0;i<26;i++){
+    for(i=0;i<DLZKA_ABECEDY;i++){
         priemer[i]=((float)pocet[i]/(float)upraveny_l)*100;
     }
 
     //zistenie najvyssieho priemeru
-    for(i=0;i<26;i++){
+    for(i=0;i<DLZKA_ABECEDY;i++){
         if(priemer[i]>highest){
             highest=priemer[i];
         }
@@ -206,7 +207,7 @@ void histogram(char upraveny[], int upraveny_l,int bola_upravena){
 
 
     for(i=1;i<(highest)+1;i++){
-        for(j=0;j<26;j++){
+        for(j=0;j<DLZKA_ABECEDY;j++){
             if(priemer[j]/10>(highest-i)){
                 printf("*");
             }
