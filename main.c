@@ -103,17 +103,12 @@ void vypis_slova_dlzky(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola
 }
 
 void vypis_histogramu(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
-    int pocet_pismen[DLZKA_ABECEDY],for_counter,riadok;
-    float priemer[DLZKA_ABECEDY],highest=0;
+    int pocet_pismen[DLZKA_ABECEDY]={'\0'},for_counter,riadok;
+    float priemer[DLZKA_ABECEDY]={'\0'},highest=0;
 
     if(bola_upravena==0){
         printf("Nie je k dispozicii upravena sprava\n");
         return;
-    }
-    //NULOVANIE POLA
-    for(for_counter=0;for_counter<DLZKA_ABECEDY;for_counter++){
-        pocet_pismen[for_counter]=0;
-        priemer[for_counter]=0;
     }
 
     for(for_counter=0;for_counter<dlzka_upraveneho;for_counter++){
@@ -185,12 +180,8 @@ void rozsifrovanie_cezara(char upravene_pole[], int dlzka_upraveneho, int bola_u
 
 int main() {
     int i,povodny_l,upraveny_l,bola_upravena=0, nacitany=0;
-    char prikaz, povodny[LIMIT_NACITANIA], upraveny[LIMIT_NACITANIA];
+    char prikaz, povodny[LIMIT_NACITANIA]={'\0'}, upraveny[LIMIT_NACITANIA]={'\0'};
 
-    for(i=0;i<LIMIT_NACITANIA;i++){
-        upraveny[i]='\0';
-        povodny[i]='\0';
-    }
 
     while(1){
 
