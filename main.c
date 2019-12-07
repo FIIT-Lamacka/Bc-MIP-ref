@@ -64,42 +64,42 @@ void vypis_upravena(char povodne_pole[], int bolo_upravene){
         printf("Nie je k dispozicii upravena sprava\n");
     }
 }
-void dana_dlzka(char povodny[],int dlzka, int *p_nacitana){
-    int num,i=0,j=0,count=0,k, min=0,max=100;
-    char vypis[dlzka]; //nebudeme potrebovat dlzku pola vacsiu ako pôvodne
+void dana_dlzka(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacitana){
+    int zadana_dlzka, pozicia_povodne=0, slovo_pozicia=0, dlzka_slova=0, reset_pozicia, min=0,max=100;
+    char vypis[dlzka_povodneho_pola]; //nebudeme potrebovat dlzku pola vacsiu ako pôvodne
 
-    if(*p_nacitana==0){
+    if(*p_bola_nacitana==0){
         printf("Sprava nie je nacitana\n");
         return;
     }
 
-    scanf("%d",&num);
+    scanf("%d",&zadana_dlzka);
 
-    if(num<min||num>max){
+    if(zadana_dlzka<min||zadana_dlzka>max){
         printf("Cislo musi byt v rozsahu <1-100>\n");
         return;
     }
 
 
-    while(i<(dlzka+1)){ //dlzka +1 aby sa nacital aj posledny znak \0 a na konci nemusel byt medzernik
-        vypis[j]=povodny[i];
+    while(pozicia_povodne<(dlzka_povodneho_pola+1)){ //dlzka +1 aby sa nacital aj posledny znak \0 a na konci nemusel byt medzernik
+        vypis[slovo_pozicia]=povodne_pole[pozicia_povodne];
 
-        if(povodny[i]=='\0' || povodny[i]==' ' || povodny[i]=='\n' ){
-            if(count==num){ //ak ma pocitadlo znakou taku istu hodnotu ako pozadovana
+        if(povodne_pole[pozicia_povodne]=='\0' || povodne_pole[pozicia_povodne]==' ' || povodne_pole[pozicia_povodne]=='\n' ){
+            if(dlzka_slova==zadana_dlzka){ //ak ma pocitadlo znakou taku istu hodnotu ako pozadovana
                 printf("%s\n",vypis);
             }
 
-            count=-1; //-1 lebo sa vo while loope zvyši hodnota, aby bol count potom pri pouziti 0
-            for(k=0;k<dlzka+1;k++){
-                vypis[k]='\0';  //resetovanie pola vypis
+            dlzka_slova=-1; //-1 lebo sa vo while loope zvyši hodnota, aby bol count potom pri pouziti 0
+            for(reset_pozicia=0;reset_pozicia<dlzka_povodneho_pola+1;reset_pozicia++){
+                vypis[reset_pozicia]='\0';  //resetovanie pola vypis
             }
 
-            j=-1;   // -1 lebo sa na konci cikla zvyši hodnota a aby bolo potom j rovne 0
+            slovo_pozicia=-1;   // -1 lebo sa na konci cikla zvyši hodnota a aby bolo potom j rovne 0
         }
 
-        count++;
-        j++;
-        i++;
+        dlzka_slova++;
+        slovo_pozicia++;
+        pozicia_povodne++;
     }
 
 }
