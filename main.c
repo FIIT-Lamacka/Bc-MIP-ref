@@ -39,8 +39,7 @@ void vypis(char *p_povodne_pole, int *p_bol_nacitany){
 }
 
 void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int *p_bola_upravena, int *p_nacitana){
-    int poradie_prvku_pola,poradie_v_upravenom=0,lenght;
-    char help=0;
+    int poradie_prvku_pola,poradie_v_upravenom=0;
 
     if(*p_nacitana==0){
         printf("Sprava nie je nacitana\n");
@@ -105,7 +104,7 @@ void dana_dlzka(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacita
 }
 
 void histogram(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
-    int pocet_pismen[DLZKA_ABECEDY], total,for_counter,riadok, highest_zaok=0;
+    int pocet_pismen[DLZKA_ABECEDY],for_counter,riadok;
     float priemer[DLZKA_ABECEDY],highest=0;
 
     if(bola_upravena==0){
@@ -186,7 +185,7 @@ void cezar(char upravene_pole[], int dlzka_upraveneho, int bola_upravena){
 }
 
 int main() {
-    int end=0,right,i,povodny_l,upraveny_l,bola_upravena=0, nacitany=0;
+    int i,povodny_l,upraveny_l,bola_upravena=0, nacitany=0;
     char prikaz, povodny[LIMIT_NACITANIA], upraveny[LIMIT_NACITANIA];
 
     //Nulovanie polí
