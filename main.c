@@ -55,10 +55,10 @@ void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int 
        }
     }
 }
-void vypis_upravena(char povodny[], int upraveny){
+void vypis_upravena(char povodne_pole[], int bolo_upravene){
 
-    if(upraveny==1){ //kontrola ci bolo povodne pole upravene
-        printf("%s\n",povodny);
+    if(bolo_upravene==1){ //kontrola ci bolo povodne pole upravene
+        printf("%s\n",povodne_pole);
     }
     else{
         printf("Nie je k dispozicii upravena sprava\n");
