@@ -38,8 +38,8 @@ void vypis(char *p_povodne_pole, int *p_bol_nacitany){
     printf("%s\n",p_povodne_pole);
 }
 
-void uprava(char p_povodny[], char *p_upraveny, int povodny_lenght, int *p_bola_upravena, int *p_nacitana){
-    int i,j=0,lenght;
+void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int *p_bola_upravena, int *p_nacitana){
+    int poradie_prvku_pola,poradie_v_upravenom=0,lenght;
     char help=0;
 
     if(*p_nacitana==0){
@@ -47,11 +47,11 @@ void uprava(char p_povodny[], char *p_upraveny, int povodny_lenght, int *p_bola_
         return;
     }
 
-    for(i=0;i<povodny_lenght;i++){
-       if(p_povodny[i]>='a'&&p_povodny[i]<='z'||p_povodny[i]>='A'&&p_povodny[i]<='Z'){ //zistenie ci je znak pismeno
+    for(poradie_prvku_pola=0;poradie_prvku_pola<povodny_lenght;poradie_prvku_pola++){
+       if(povodne_pole[poradie_prvku_pola]>='a'&&povodne_pole[poradie_prvku_pola]<='z'||povodne_pole[poradie_prvku_pola]>='A'&&povodne_pole[poradie_prvku_pola]<='Z'){ //zistenie ci je znak pismeno
             *p_bola_upravena=1; //kontrolna premenna pre ine funkcie
-            *(p_upraveny+j)=toupper(p_povodny[i]); //konverzia pismen na velke
-            j++;
+            *(p_upravene_pole+poradie_v_upravenom)=toupper(povodne_pole[poradie_prvku_pola]); //konverzia pismen na velke
+            poradie_v_upravenom++;
        }
     }
 }
