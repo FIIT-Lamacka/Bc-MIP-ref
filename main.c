@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <ctype.h> //pre tolower() funkciu
-//#include <stdlib.h>
 #include <string.h> //funkcia strlen()
 #include <math.h> //funkcia floor()
 #define LIMIT_NACITANIA 1000
