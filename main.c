@@ -18,7 +18,7 @@ int main() {
     char prikaz, povodny[LIMIT_NACITANIA], upraveny[LIMIT_NACITANIA];
 
     //Nulovanie polí
-    for(i=0;i<LIMIT;i++){
+    for(i=0;i<LIMIT_NACITANIA;i++){
         upraveny[i]='\0';
         povodny[i]='\0';
     }
