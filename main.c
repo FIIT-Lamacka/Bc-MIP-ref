@@ -6,7 +6,7 @@
 #define DLZKA_ABECEDY 26
 
 
-void nacitanie(char *p_povodne_pole, int *p_bol_nacitany){
+void nacitanie_povodneho_pola(char *p_povodne_pole, int *p_bol_nacitany){
     FILE *fr;
     int i=0;
     char c;
@@ -29,7 +29,7 @@ void nacitanie(char *p_povodne_pole, int *p_bol_nacitany){
 
 }
 
-void vypis(char *p_povodne_pole, int *p_bol_nacitany){
+void vypis_povodneho_pola(char *p_povodne_pole, int *p_bol_nacitany){
     if(*p_bol_nacitany==0){
         printf("Sprava nie je nacitana\n");
         return;
@@ -37,7 +37,7 @@ void vypis(char *p_povodne_pole, int *p_bol_nacitany){
     printf("%s\n",p_povodne_pole);
 }
 
-void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int *p_bola_upravena, int *p_nacitana){
+void uprava_povodneho_pola(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int *p_bola_upravena, int *p_nacitana){
     int poradie_prvku_pola,poradie_v_upravenom=0;
 
     if(*p_nacitana==0){
@@ -53,7 +53,7 @@ void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int 
        }
     }
 }
-void vypis_upravena(char povodne_pole[], int bolo_upravene){
+void vypis_upravenej_spravy(char povodne_pole[], int bolo_upravene){
 
     if(bolo_upravene==1){
         printf("%s\n",povodne_pole);
@@ -62,7 +62,7 @@ void vypis_upravena(char povodne_pole[], int bolo_upravene){
         printf("Nie je k dispozicii upravena sprava\n");
     }
 }
-void dana_dlzka(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacitana){
+void vypis_slova_dlzky(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacitana){
     int zadana_dlzka, pozicia_povodne=0, slovo_pozicia=0, dlzka_slova=0, reset_pozicia, min=0,max=100;
     char vypis[dlzka_povodneho_pola];
 
@@ -102,7 +102,7 @@ void dana_dlzka(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacita
 
 }
 
-void histogram(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
+void vypis_histogramu(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
     int pocet_pismen[DLZKA_ABECEDY],for_counter,riadok;
     float priemer[DLZKA_ABECEDY],highest=0;
 
@@ -153,7 +153,7 @@ void histogram(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
     printf("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
 
 }
-void cezar(char upravene_pole[], int dlzka_upraveneho, int bola_upravena){
+void rozsifrovanie_cezara(char upravene_pole[], int dlzka_upraveneho, int bola_upravena){
     int posun,pozicia_rozsifrovane,rozdiel;
     char rozsifrovane[dlzka_upraveneho];
 
@@ -204,25 +204,25 @@ int main() {
 
         switch(prikaz) {
             case 'n' :
-                nacitanie(povodny,&nacitany);
+                nacitanie_povodneho_pola(povodny,&nacitany);
                 break;
             case 'v'  :
-                vypis(povodny,&nacitany);
+                vypis_povodneho_pola(povodny,&nacitany);
                 break;
             case 'u'  :
-                uprava(povodny,upraveny,povodny_l,&bola_upravena,&nacitany);
+                uprava_povodneho_pola(povodny,upraveny,povodny_l,&bola_upravena,&nacitany);
                 break;
             case 's'  :
-                vypis_upravena(upraveny,bola_upravena);
+                vypis_upravenej_spravy(upraveny,bola_upravena);
                 break;
             case 'd'  :
-                dana_dlzka(povodny,povodny_l,&nacitany);
+                vypis_slova_dlzky(povodny,povodny_l,&nacitany);
                 break;
             case 'h'  :
-                histogram(upraveny, upraveny_l, bola_upravena);
+                vypis_histogramu(upraveny, upraveny_l, bola_upravena);
                 break;
             case 'c'  :
-                cezar(upraveny, upraveny_l, bola_upravena);
+                rozsifrovanie_cezara(upraveny, upraveny_l, bola_upravena);
                 break;
             case 'k'  :
                 return 0;
