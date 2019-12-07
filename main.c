@@ -104,8 +104,8 @@ void dana_dlzka(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacita
 
 }
 
-void histogram(char upraveny[], int upraveny_l,int bola_upravena){
-    int pocet[DLZKA_ABECEDY], total,i,j, highest_zaok=0;
+void histogram(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
+    int pocet_pismen[DLZKA_ABECEDY], total,for_counter,riadok, highest_zaok=0;
     float priemer[DLZKA_ABECEDY],highest=0;
 
     if(bola_upravena==0){
@@ -113,23 +113,23 @@ void histogram(char upraveny[], int upraveny_l,int bola_upravena){
         return;
     }
     //NULOVANIE POLA
-    for(i=0;i<DLZKA_ABECEDY;i++){
-        pocet[i]=0;
-        priemer[i]=0;
+    for(for_counter=0;for_counter<DLZKA_ABECEDY;for_counter++){
+        pocet_pismen[for_counter]=0;
+        priemer[for_counter]=0;
     }
     //NACITANIE HODNOT Z UPRAVENEHO DO POLA POCET
-    for(i=0;i<upraveny_l;i++){
-        pocet[(upraveny[i]-'A')]++;
+    for(for_counter=0;for_counter<dlzka_upraveneho;for_counter++){
+        pocet_pismen[(upravene_pole[for_counter]-'A')]++;
     }
     //VYPOCET PERCENT
-    for(i=0;i<DLZKA_ABECEDY;i++){
-        priemer[i]=((float)pocet[i]/(float)upraveny_l)*100;
+    for(for_counter=0;for_counter<DLZKA_ABECEDY;for_counter++){
+        priemer[for_counter]=((float)pocet_pismen[for_counter]/(float)dlzka_upraveneho)*100;
     }
 
     //zistenie najvyssieho priemeru
-    for(i=0;i<DLZKA_ABECEDY;i++){
-        if(priemer[i]>highest){
-            highest=priemer[i];
+    for(for_counter=0;for_counter<DLZKA_ABECEDY;for_counter++){
+        if(priemer[for_counter]>highest){
+            highest=priemer[for_counter];
         }
     }
     //ak by bol priemer mensi ako 10 nastavi sa hodnota 11, kvoli vykresleniu hviezdiciek
@@ -141,9 +141,9 @@ void histogram(char upraveny[], int upraveny_l,int bola_upravena){
     highest=floor(highest);
 
 
-    for(i=1;i<(highest)+1;i++){
-        for(j=0;j<DLZKA_ABECEDY;j++){
-            if(priemer[j]/10>(highest-i)){
+    for(for_counter=1;for_counter<(highest)+1;for_counter++){
+        for(riadok=0;riadok<DLZKA_ABECEDY;riadok++){
+            if(priemer[riadok]/10>(highest-for_counter)){
                 printf("*");
             }
             else{
