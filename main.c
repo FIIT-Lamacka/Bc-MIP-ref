@@ -21,7 +21,7 @@ void nacitanie(char *p_povodne_pole, int *p_bol_nacitany){
         p_povodne_pole++;
     }
     *p_bol_nacitany=1;
-    //zo suroborom viac pracovat nebudeme cize rovno ho mÙzeme zatvoriù
+
     if (fclose(fr) == EOF)
       printf("Subor vstup.txt sa nepodarilo zatvorit.\n");
 
@@ -47,7 +47,7 @@ void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int 
 
     for(poradie_prvku_pola=0;poradie_prvku_pola<povodny_lenght;poradie_prvku_pola++){
        if((povodne_pole[poradie_prvku_pola]>='a'&&povodne_pole[poradie_prvku_pola]<='z')||(povodne_pole[poradie_prvku_pola]>='A'&&povodne_pole[poradie_prvku_pola]<='Z')){ //zistenie ci je znak pismeno
-            *p_bola_upravena=1; //kontrolna premenna pre ine funkcie
+            *p_bola_upravena=1;
             *(p_upravene_pole+poradie_v_upravenom)=toupper(povodne_pole[poradie_prvku_pola]); //konverzia pismen na velke
             poradie_v_upravenom++;
        }
@@ -55,7 +55,7 @@ void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int 
 }
 void vypis_upravena(char povodne_pole[], int bolo_upravene){
 
-    if(bolo_upravene==1){ //kontrola ci bolo povodne pole upravene
+    if(bolo_upravene==1){
         printf("%s\n",povodne_pole);
     }
     else{
@@ -64,7 +64,7 @@ void vypis_upravena(char povodne_pole[], int bolo_upravene){
 }
 void dana_dlzka(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacitana){
     int zadana_dlzka, pozicia_povodne=0, slovo_pozicia=0, dlzka_slova=0, reset_pozicia, min=0,max=100;
-    char vypis[dlzka_povodneho_pola]; //nebudeme potrebovat dlzku pola vacsiu ako pÙvodne
+    char vypis[dlzka_povodneho_pola];
 
     if(*p_bola_nacitana==0){
         printf("Sprava nie je nacitana\n");
@@ -83,16 +83,16 @@ void dana_dlzka(char povodne_pole[],int dlzka_povodneho_pola, int *p_bola_nacita
         vypis[slovo_pozicia]=povodne_pole[pozicia_povodne];
 
         if(povodne_pole[pozicia_povodne]=='\0' || povodne_pole[pozicia_povodne]==' ' || povodne_pole[pozicia_povodne]=='\n' ){
-            if(dlzka_slova==zadana_dlzka){ //ak ma pocitadlo znakou taku istu hodnotu ako pozadovana
+            if(dlzka_slova==zadana_dlzka){
                 printf("%s\n",vypis);
             }
 
-            dlzka_slova=-1; //-1 lebo sa vo while loope zvyöi hodnota, aby bol count potom pri pouziti 0
+            dlzka_slova=-1; //-1 lebo sa vo while loope zvyöi hodnota, aby bola dlzka_slova potom pri pouziti 0
             for(reset_pozicia=0;reset_pozicia<dlzka_povodneho_pola+1;reset_pozicia++){
                 vypis[reset_pozicia]='\0';  //resetovanie pola vypis
             }
 
-            slovo_pozicia=-1;   // -1 lebo sa na konci cikla zvyöi hodnota a aby bolo potom j rovne 0
+            slovo_pozicia=-1;   // -1 lebo sa na konci cikla zvyöi hodnota a aby bolo potom slovo_pozicia rovne 0
         }
 
         dlzka_slova++;
@@ -115,11 +115,11 @@ void histogram(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
         pocet_pismen[for_counter]=0;
         priemer[for_counter]=0;
     }
-    //NACITANIE HODNOT Z UPRAVENEHO DO POLA POCET
+
     for(for_counter=0;for_counter<dlzka_upraveneho;for_counter++){
         pocet_pismen[(upravene_pole[for_counter]-'A')]++;
     }
-    //VYPOCET PERCENT
+
     for(for_counter=0;for_counter<DLZKA_ABECEDY;for_counter++){
         priemer[for_counter]=((float)pocet_pismen[for_counter]/(float)dlzka_upraveneho)*100;
     }
@@ -169,10 +169,10 @@ void cezar(char upravene_pole[], int dlzka_upraveneho, int bola_upravena){
     }
 
     for(pozicia_rozsifrovane=0;pozicia_rozsifrovane<dlzka_upraveneho;pozicia_rozsifrovane++){
-        rozsifrovane[pozicia_rozsifrovane]=(upravene_pole[pozicia_rozsifrovane]-posun); //odpocitavanie charu cize "desifrovanie"
+        rozsifrovane[pozicia_rozsifrovane]=(upravene_pole[pozicia_rozsifrovane]-posun);
 
-        if(rozsifrovane[pozicia_rozsifrovane]<'A'){    //kontrola ci nie je hodnota mensia ako A,
-            rozdiel=rozsifrovane[pozicia_rozsifrovane]-'A'; //vypocitanie rozdielu medzi A a hodnotou, rozdiel vracia zapornu hodnotu
+        if(rozsifrovane[pozicia_rozsifrovane]<'A'){
+            rozdiel=rozsifrovane[pozicia_rozsifrovane]-'A';
             rozsifrovane[pozicia_rozsifrovane]='Z'+(rozdiel+1); //pripocitanie rozdielu k hodnote z
         }
 
@@ -187,19 +187,16 @@ int main() {
     int i,povodny_l,upraveny_l,bola_upravena=0, nacitany=0;
     char prikaz, povodny[LIMIT_NACITANIA], upraveny[LIMIT_NACITANIA];
 
-    //Nulovanie polÌ
     for(i=0;i<LIMIT_NACITANIA;i++){
         upraveny[i]='\0';
         povodny[i]='\0';
     }
 
-    while(1){ //NekoneËna sluËka Ëo skonËÌ pri k
+    while(1){
 
-        //Nacitanie prikazu a prevod na male pismeno
         prikaz = getchar();
         prikaz=tolower(prikaz);
 
-        //opakovane zistenie dlzok pola, pre prÌpad upravy suboru sifra.txt
         povodny_l =strlen(povodny);
         upraveny_l =strlen(upraveny);
 
