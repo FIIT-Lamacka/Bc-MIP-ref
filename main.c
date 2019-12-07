@@ -13,7 +13,7 @@ void nacitanie(char *p_povodne_pole, int *p_bol_nacitany){
 
     if ((fr = fopen("sifra.txt", "r")) == NULL) {
 		printf("Spravu sa nepodarilo nacitat\n");
-		return 0;
+		return;
 	}
     //nacitanie hodnôt do súboru pomocou pointerovej aritmetiky
 	while (c = getc(fr), feof(fr) == 0 && i<LIMIT_NACITANIA){
