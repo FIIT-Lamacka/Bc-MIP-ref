@@ -46,7 +46,7 @@ void uprava(char povodne_pole[], char *p_upravene_pole, int povodny_lenght, int 
     }
 
     for(poradie_prvku_pola=0;poradie_prvku_pola<povodny_lenght;poradie_prvku_pola++){
-       if(povodne_pole[poradie_prvku_pola]>='a'&&povodne_pole[poradie_prvku_pola]<='z'||povodne_pole[poradie_prvku_pola]>='A'&&povodne_pole[poradie_prvku_pola]<='Z'){ //zistenie ci je znak pismeno
+       if((povodne_pole[poradie_prvku_pola]>='a'&&povodne_pole[poradie_prvku_pola]<='z')||(povodne_pole[poradie_prvku_pola]>='A'&&povodne_pole[poradie_prvku_pola]<='Z')){ //zistenie ci je znak pismeno
             *p_bola_upravena=1; //kontrolna premenna pre ine funkcie
             *(p_upravene_pole+poradie_v_upravenom)=toupper(povodne_pole[poradie_prvku_pola]); //konverzia pismen na velke
             poradie_v_upravenom++;
