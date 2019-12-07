@@ -155,30 +155,30 @@ void histogram(char upravene_pole[], int dlzka_upraveneho,int bola_upravena){
     printf("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
 
 }
-void cezar(char upraveny[], int upraveny_l, int bola_upravena){
-    int n,i,rozdiel;
-    char rozsifrovane[upraveny_l];
+void cezar(char upravene_pole[], int dlzka_upraveneho, int bola_upravena){
+    int posun,pozicia_rozsifrovane,rozdiel;
+    char rozsifrovane[dlzka_upraveneho];
 
-    if(upraveny_l==0){
+    if(dlzka_upraveneho==0){
         printf("Nie je k dispozicii upravena sprava\n");
         return;
     }
 
-    scanf("%d",&n);
-    if(n<1||n>25){
+    scanf("%d",&posun);
+    if(posun<1||posun>25){
         printf("Cislo musi byt v rozsahu <1-25>\n");
         return;
     }
 
-    for(i=0;i<upraveny_l;i++){
-        rozsifrovane[i]=(upraveny[i]-n); //odpocitavanie charu cize "desifrovanie"
+    for(pozicia_rozsifrovane=0;pozicia_rozsifrovane<dlzka_upraveneho;pozicia_rozsifrovane++){
+        rozsifrovane[pozicia_rozsifrovane]=(upravene_pole[pozicia_rozsifrovane]-posun); //odpocitavanie charu cize "desifrovanie"
 
-        if(rozsifrovane[i]<'A'){    //kontrola ci nie je hodnota mensia ako A,
-            rozdiel=rozsifrovane[i]-'A'; //vypocitanie rozdielu medzi A a hodnotou, rozdiel vracia zapornu hodnotu
-            rozsifrovane[i]='Z'+(rozdiel+1); //pripocitanie rozdielu k hodnote z
+        if(rozsifrovane[pozicia_rozsifrovane]<'A'){    //kontrola ci nie je hodnota mensia ako A,
+            rozdiel=rozsifrovane[pozicia_rozsifrovane]-'A'; //vypocitanie rozdielu medzi A a hodnotou, rozdiel vracia zapornu hodnotu
+            rozsifrovane[pozicia_rozsifrovane]='Z'+(rozdiel+1); //pripocitanie rozdielu k hodnote z
         }
 
-        printf("%c",rozsifrovane[i]);
+        printf("%c",rozsifrovane[pozicia_rozsifrovane]);
     }
     printf("\n");
 
