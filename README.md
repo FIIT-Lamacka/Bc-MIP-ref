@@ -1,5 +1,5 @@
 # MIP-ref
-This program reads a string from the sifra.txt file and processes it in different ways.
+This program reads a string from a sifra.txt file and processes it in different ways.
 
 n - loads the string
 
